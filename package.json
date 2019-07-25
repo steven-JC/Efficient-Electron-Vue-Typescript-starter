@@ -1,9 +1,9 @@
 {
-    "name": "tumax-electron",
+    "name": "your-app-name",
     "version": "0.0.1",
-    "author": "stevenjc.chen <stevenjc.chen@corp.to8to.com>",
-    "description": "tumax electron project",
-    "license": null,
+    "author": "stevenjc.chen <522702986@qq.com>",
+    "description": "electron project",
+    "license": "MIT",
     "main": "./dist/electron/main.js",
     "scripts": {
         "build": "node .electron-vue/build.js && electron-builder",
@@ -18,8 +18,8 @@
         "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js"
     },
     "build": {
-        "productName": "tumax-electron",
-        "appId": "com.to8to.yun",
+        "productName": "your-app-name",
+        "appId": "com.your-domain.app",
         "directories": {
             "output": "build"
         },
