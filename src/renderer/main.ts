@@ -1,6 +1,7 @@
 import { Vue } from 'vue-property-decorator'
 import Vuex from 'vuex'
 import Router, { RouteConfig } from 'vue-router'
+
 Vue.use(Vuex)
 Vue.use(Router)
 

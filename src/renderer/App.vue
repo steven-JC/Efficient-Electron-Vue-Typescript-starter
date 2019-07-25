@@ -8,9 +8,11 @@
 import { Component } from 'vue-property-decorator'
 import Page from '@/common/Page'
 import { namespace } from 'vuex-class'
+
+import '@/style/base.styl'
+
 const login = namespace('login')
-const a: string = 'fvck'
-console.log(a)
+
 @Component({
     components: {}
 })
