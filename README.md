@@ -29,6 +29,26 @@ yarn build:mac
 
 # Introduction
 
+## class-style vue components
+
+```html
+<template>
+    <div id="home" class="home">
+        Home
+    </div>
+</template>
+<script lang="ts">
+    import { Component } from 'vue-property-decorator'
+    import Page from '@/common/Page'
+    @Component
+    export default class Home extends Page {}
+</script>
+<style lang="stylus" scoped>
+    .home
+      font-size 30px
+</style>
+```
+
 ## API modules
 
 > the api modules would be required automatically.
@@ -85,3 +105,10 @@ export default {
 > the route.ts files would be required automatically.
 
 you don't need to have a router folder to manage the routes.
+
+## dynamic stylesheet supports
+
+-   stylus
+-   less
+-   scss
+-   sass
