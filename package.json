@@ -1,8 +1,8 @@
 {
-    "name": "your-project-name",
+    "name": "tumax-electron",
     "version": "0.0.1",
     "author": "stevenjc.chen <stevenjc.chen@corp.to8to.com>",
-    "description": "electron project",
+    "description": "tumax electron project",
     "license": null,
     "main": "./dist/electron/main.js",
     "scripts": {
