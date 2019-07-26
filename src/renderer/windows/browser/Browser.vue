@@ -1,6 +1,15 @@
 <template>
   <div id="app">
-    <router-view />
+    <TitleBar window="browser"
+              :is-maximizable="true"
+              :is-closable="true"
+              :is-minimizable="true">
+      <template slot="content">
+        <div class="title-bar-content"></div>
+      </template>
+    </TitleBar>
+    <div>Browser</div>
+
   </div>
 </template>
 
@@ -8,13 +17,13 @@
 import { Component } from 'vue-property-decorator'
 import Page from '@/common/Page'
 import { namespace } from 'vuex-class'
-
+import TitleBar from '@/components/TitleBar.vue'
 import '@/style/base.styl'
 
 const login = namespace('login')
 
 @Component({
-    components: {}
+    components: { TitleBar }
 })
 export default class App extends Page {
     @login.Action('login')
