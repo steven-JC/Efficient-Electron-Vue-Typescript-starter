@@ -100,12 +100,6 @@ export default {
 }
 ```
 
-## distributed route
-
-> the route.ts files would be required automatically.
-
-you don't need to have a router folder to manage the routes.
-
 ## dynamic stylesheet supports
 
 -   stylus

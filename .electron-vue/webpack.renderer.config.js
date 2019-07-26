@@ -1,7 +1,7 @@
 'use strict'
 
 process.env.BABEL_ENV = 'renderer'
-
+const fs = require('fs-extra')
 const path = require('path')
 const { dependencies } = require('../package.json')
 const webpack = require('webpack')
@@ -21,13 +21,38 @@ const { VueLoaderPlugin } = require('vue-loader')
  */
 let whiteListedModules = ['vue']
 
-console.log([])
+const entries = {}
+const htmlPlugins = []
+
+const win = fs.readdirSync(path.join(__dirname, '../src/renderer/windows'))
+win.forEach((target) => {
+    htmlPlugins.push(
+        new HtmlWebpackPlugin({
+            filename: `${target}.html`,
+            template: path.resolve(__dirname, '../src/index.ejs'),
+            chunks: [target],
+            minify: {
+                collapseWhitespace: true,
+                removeAttributeQuotes: true,
+                removeComments: true
+            },
+            nodeModules:
+                process.env.NODE_ENV !== 'production'
+                    ? path.resolve(__dirname, '../node_modules')
+                    : false
+        })
+    )
+    entries[target] = path.join(
+        __dirname,
+        `../src/renderer/windows/${target}/index.ts`
+    )
+})
+
+console.log(win)
 
 let rendererConfig = {
     devtool: '#cheap-module-eval-source-map',
-    entry: {
-        renderer: path.join(__dirname, '../src/renderer/main.ts')
-    },
+    entry: entries,
     externals: [
         ...Object.keys(dependencies || {}).filter(
             (d) => !whiteListedModules.includes(d)
@@ -193,19 +218,7 @@ let rendererConfig = {
     plugins: [
         new VueLoaderPlugin(),
         new MiniCssExtractPlugin({ filename: 'styles.css' }),
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: path.resolve(__dirname, '../src/index.ejs'),
-            minify: {
-                collapseWhitespace: true,
-                removeAttributeQuotes: true,
-                removeComments: true
-            },
-            nodeModules:
-                process.env.NODE_ENV !== 'production'
-                    ? path.resolve(__dirname, '../node_modules')
-                    : false
-        }),
+        ...htmlPlugins,
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin()
     ],

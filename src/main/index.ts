@@ -1,41 +1,18 @@
-'use strict'
-
-import { app, BrowserWindow } from 'electron'
-
+import { app } from 'electron'
+import winManager from './lib/windowManager'
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
  */
 if (process.env.NODE_ENV !== 'development') {
-    global.__static = require('path')
+    ;(global as any).__static = require('path')
         .join(__dirname, '/static')
         .replace(/\\/g, '\\\\')
 }
 
-let mainWindow
-const winURL =
-    process.env.NODE_ENV === 'development'
-        ? `http://localhost:9080`
-        : `file://${__dirname}/index.html`
-
-function createWindow() {
-    /**
-     * Initial window options
-     */
-    mainWindow = new BrowserWindow({
-        width: 1024,
-        height: 640,
-        useContentSize: true
-    })
-
-    mainWindow.loadURL(winURL)
-
-    mainWindow.on('closed', () => {
-        mainWindow = null
-    })
-}
-
-app.on('ready', createWindow)
+app.on('ready', () => {
+    openHome()
+})
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
@@ -43,11 +20,13 @@ app.on('window-all-closed', () => {
     }
 })
 
-app.on('activate', () => {
-    if (mainWindow === null) {
-        createWindow()
+app.on('activate', openHome)
+
+function openHome() {
+    if (!winManager.windows.index) {
+        winManager.open('home')
     }
-})
+}
 
 /**
  * Auto Updater

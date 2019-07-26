@@ -1,0 +1,27 @@
+{
+    "home": {
+        "frame": false,
+        "width": 1024,
+        "height": 640,
+        "minWidth": 1024,
+        "minHeight": 640,
+        "transparent": false,
+        "useContentSize": true
+    },
+    "login": {
+        "frame": false,
+        "width": 1024,
+        "height": 640,
+        "minWidth": 1024,
+        "minHeight": 640,
+        "useContentSize": true
+    },
+    "browser": {
+        "frame": false,
+        "width": 1024,
+        "height": 640,
+        "minWidth": 1024,
+        "minHeight": 640,
+        "useContentSize": true
+    }
+}
