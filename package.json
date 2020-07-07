@@ -55,7 +55,7 @@
     "fs-extra": "^8.1.0"
   },
   "devDependencies": {
-    "electron": "^2.0.4",
+    "electron": "^9.1.0",
     "@types/qs": "^6.5.3",
     "axios": "^0.18.0",
     "qs": "^6.7.0",
